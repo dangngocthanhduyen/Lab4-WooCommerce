@@ -1,0 +1,55 @@
+<script src="//code.jquery.com/jquery-2.2.4.min.js"></script>
+<script src="js/ygrab.js"></script>
+<script>		
+$ (function() {
+
+	var data = [
+    {
+        url: 'http://www.converse.com.vn/', // url string rquired
+        selector: 'div.popular-box', // selector string rquired
+        loop: true, // each boolean rquired
+        result: [
+            {
+                name: 'title', // key string rquired
+                find: 'h3', // selector child string rquired
+                grab: {
+                    by: 'text', // attribut string rquired
+                    value: '' // attribut value string optional
+                }
+            },{
+                name: 'link',
+                find: 'div.popular-box-pic img',
+                grab: {
+                    by: 'attr',
+                    value: 'src'
+                }
+            },{
+                name: 'price',
+                find: 'div.price span.sale-price',
+                grab: {
+                    by: 'text',
+                    value: ''
+                }
+            }
+        ]
+    }
+];
+
+ygrab(data, function(result) {
+    // alert(JSON.stringify(result, null, 2));
+    //console.log(JSON.stringify(result, null, 2));
+    //var temp = JSON.stringify(result, null, 2)
+    //console.log(temp);
+    console.log(result.length);
+
+    for(var i=0; i<result.length; i++)
+    {
+        // temp = result[i].priceRegular.length; 
+        // document.write(result[i].title.substring(13,60), ',', result[i].link, ',', result[i].priceRegular.substring(0,(temp-2)), ',', result[i].priceSale.substring(0,(temp-2)));
+        document.write(result[i].title, ';', result[i].link, ';', result[i].price);
+        document.write('<br/>'); 
+    }    
+});     
+	
+});
+</script>
